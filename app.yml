@@ -1,7 +1,7 @@
 version: '2'
 services:
     kukulkan-app:
-        image: kukulkan
+        image: danimaniarqsoft/kukulkan
         depends_on: 
             - kukulkan-mongodb
         environment:
@@ -11,8 +11,6 @@ services:
         ports:
             - 8080:8080
     kukulkan-mongodb:
-        image: mongo:3.2.10
-        ports:
-            - "27017:27017"
-        # volumes:
-        #     - ~/volumes/kukulkancraftsman/mongodb/:/data/db/
+        extends:
+            file: mongodb.yml
+            service: kukulkan-mongodb
