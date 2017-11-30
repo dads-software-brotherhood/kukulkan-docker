@@ -4,7 +4,6 @@ services:
         image: kukulkan
         depends_on: 
             - kukulkan-mongodb
-            - kukulkan-mysql
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - SPRING_DATA_MONGODB_URI=mongodb://kukulkan-mongodb:27017
