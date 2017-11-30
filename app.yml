@@ -1,16 +1,29 @@
 version: '2'
 services:
     kukulkan-app:
-        image: danimaniarqsoft/kukulkan
+        image: danimaniarqsoft/kukulkan:1.0.1
         depends_on: 
             - kukulkan-mongodb
+            - kukulkan-mysql
         environment:
             - SPRING_PROFILES_ACTIVE=prod,swagger
             - SPRING_DATA_MONGODB_URI=mongodb://kukulkan-mongodb:27017
             - KUKULKAN_DATA_MYSQL_URI=jdbc:mysql://kukulkan-mysql:3306
+            - KUKULKAN_CONFIG_OUTPUTDIR=/home/app/
+            - KUKULKAN_CONFIG_DOCUMENTURL=http://localhost/
+        volumes:
+            - "/home/dadsuser/storage:/home/app"
         ports:
             - 8080:8080
     kukulkan-mongodb:
         extends:
             file: mongodb.yml
             service: kukulkan-mongodb
+    kukulkan-mysql:
+        extends:
+            file: mysql.yml
+            service: kukulkan-mysql
+    kukulkan-ngix:
+        extends:
+            file: nginx.yml
+            service: kukulkan-nginx

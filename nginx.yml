@@ -1,0 +1,9 @@
+version: '2'
+services:
+    kukulkan-nginx:
+        image: nginx
+        volumes:
+            - "/home/dadsuser/storage:/usr/share/nginx/html"
+        ports:
+            - "80:80"
+        restart: always
