@@ -1,7 +1,7 @@
 version: '2'
 services:
     kukulkan-app:
-        image: kukulkan:latest
+        image: danimaniarqsoft/kukulkan:latest
         depends_on: 
             - kukulkan-mongodb
             - kukulkan-mysql
